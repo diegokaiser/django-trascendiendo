@@ -20,15 +20,17 @@
 
 <div class="modal">
   <div class="modal_content">
+    <span class="material-symbols-sharp">cancel</span>
     <div class="modal_content_form">
-      <form method="post">
+      <form method="post" class="modal_form">
         <h3>Qué tal!</h3>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam earum, omnis veniam.</p>
         {% csrf_token %}
         {{form.as_div}}
-        {{error}}
-        <button>
+        <button class="js-sendForm">
           Enviar
         </button>
+        {{error}}
       </form>
     </div>
     <div class="modal_content_message">
