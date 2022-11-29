@@ -1,0 +1,17 @@
+/* mediaqueries */
+
+
+/****************MOBILE DEVICES*****************/
+@mixin mobile576 {
+  @media (min-width: 577px) {
+    @content;
+  }
+}
+
+
+/****************DESKTOPS DEVICES*****************/
+@mixin laptop1200 {
+  @media (min-width: 1201px) {
+    @content;
+  }
+}
