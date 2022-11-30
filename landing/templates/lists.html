@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<main class="lists">
+  <table>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Teléfono</th>
+        <th>Email</th>
+        <th>Fecha</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for list in lists %}
+      <tr>
+        <td>{{list.nombre}}</td>
+        <td>{{list.telefono}}</td>
+        <td>{{list.email}}</td>
+        <td>{{list.created_at}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</main>
+
+{% endblock %}

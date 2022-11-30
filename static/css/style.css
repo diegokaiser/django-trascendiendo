@@ -134,9 +134,14 @@ table {
   border-spacing: 0;
 }
 
-/* mediaqueries */
 /****************MOBILE DEVICES*****************/
+/****************TABLET DEVICES*****************/
 /****************DESKTOPS DEVICES*****************/
+/****************REGLAS POR ALTOS*****************/
+/****************MOBILE LANDSCAPE*****************/
+/****************TABLET LANDSCAPE*****************/
+/****************TABLET PORTRAIT*****************/
+/****************ONLY IE10+*****************/
 body {
   background-image: url("../images/bkg.jpg");
   background-position: center center;
@@ -147,22 +152,46 @@ body {
 }
 
 .tras {
-  background-image: url("../images/mask.svg");
+  background-image: url("../images/mask_.svg");
   background-position: top right;
   background-size: cover;
   background-repeat: no-repeat;
   height: 100%;
   padding: 0 4%;
-  width: 50%;
+  width: 80%;
+}
+
+@media (min-width: 415px) {
+  .tras {
+    width: 75%;
+  }
+}
+
+@media (min-width: 768px) {
+  .tras {
+    width: 50%;
+  }
 }
 
 .tras .logo {
   margin-bottom: 63px;
-  padding-top: 4%;
+  padding-top: 6%;
 }
 
 .tras .content {
-  width: 80%;
+  width: 90%;
+}
+
+@media (min-width: 415px) {
+  .tras .content {
+    width: 85%;
+  }
+}
+
+@media (min-width: 768px) {
+  .tras .content {
+    width: 80%;
+  }
 }
 
 .tras .content_text h2 {
@@ -215,7 +244,19 @@ body {
 .modal_content {
   height: 540px;
   position: relative;
-  width: 370px;
+  width: 90%;
+}
+
+@media (min-width: 415px) {
+  .modal_content {
+    width: 85%;
+  }
+}
+
+@media (min-width: 768px) {
+  .modal_content {
+    width: 370px;
+  }
 }
 
 .modal_content_form {
@@ -283,6 +324,10 @@ body {
   outline: none;
 }
 
+.modal_content_form div input:autofill, .modal_content_form div input:-webkit-autofill, .modal_content_form div input:-internal-autofill-selected {
+  background-color: transparent !important;
+}
+
 .modal_content_form button {
   background: linear-gradient(93.14deg, #0277BD -3.39%, #4527A0 104.04%);
   border-radius: 4px;
@@ -293,7 +338,7 @@ body {
   font-size: 21px;
   font-weight: 500;
   letter-spacing: 2px;
-  margin-top: 7px;
+  margin-bottom: 7px;
   padding: 11px 26px;
   text-transform: uppercase;
   width: 100%;
@@ -303,6 +348,12 @@ body {
   background: #ddd;
   color: #4527A0;
   cursor: not-allowed;
+}
+
+.modal_content_form .error {
+  color: #D32F2F;
+  font-size: 12px;
+  font-weight: bold;
 }
 
 .modal_content_message {

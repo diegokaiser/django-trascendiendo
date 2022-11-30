@@ -7,7 +7,7 @@ class CreateContactForm(forms.ModelForm):
         model = Contact
         fields = ['nombre', 'telefono', 'email']
         widgets = {
-            'nombre': forms.TextInput(attrs={'class': 'input__field input__field--haruki', 'required': ''}),
-            'telefono': forms.TextInput(attrs={'class': 'input__field input__field--haruki', 'required': '', 'pattern': '/^\d+$/;'}),
-            'email': forms.TextInput(attrs={'class': 'input__field input__field--haruki', 'required': '', 'pattern': '[a-z0-9]+@[a-z]+\.[a-z]{2,3}'}),
+            'nombre': forms.TextInput(attrs={'class': 'input__field input__field--haruki', 'required': '', "autocomplete": "nope"}),
+            'telefono': forms.TextInput(attrs={'class': 'input__field input__field--haruki field__phone', 'required': '', "autocomplete": "nope"}),
+            'email': forms.TextInput(attrs={'class': 'input__field input__field--haruki field__email', 'required': '', "autocomplete": "nope"}),
         }
