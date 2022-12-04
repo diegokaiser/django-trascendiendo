@@ -15,7 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from lobogris import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', views.home, name="home"),
+    path('workarea/', views.workarea, name="workarea"),
+    path('workarea/signup/', views.createuser, name="signup"),
+    path('workarea/login/', views.signin, name="login"),
+    path('workarea/logout/', views.signout, name="logout"),
 ]

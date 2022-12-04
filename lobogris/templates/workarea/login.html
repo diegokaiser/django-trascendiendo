@@ -1,0 +1,32 @@
+{% extends 'workarea/base.html' %}
+{% block content %}
+<!-- Content -->
+<div class="container-xxl">
+  <div class="authentication-wrapper authentication-basic container-p-y">
+    <div class="authentication-inner">
+      <!-- Register -->
+      <div class="card">
+        <div class="card-body">
+          <!-- Logo -->
+          <!-- /Logo -->
+          <h4 class="mb-2">Hola extraño! 👋</h4>
+          <p class="mb-4">Por favor, identifícate en el sistema y empieza a trabajar 😉</p>
+          <form method="post">
+            {% csrf_token %}
+            {{form.as_div}}
+            <button>
+              Login
+            </button>
+            <span class="msg">
+              {{error}}
+            </span>
+          </form>
+        </div>
+      </div>
+      <!-- /Register -->
+    </div>
+  </div>
+</div>
+<!-- / Content -->
+
+{% endblock %}
