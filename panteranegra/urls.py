@@ -19,9 +19,9 @@ from lobogris import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home, name="home"),
-    path('workarea/', views.workarea, name="workarea"),
-    path('workarea/signup/', views.createuser, name="signup"),
-    path('workarea/login/', views.signin, name="login"),
-    path('workarea/logout/', views.signout, name="logout"),
+    path('', views.home, name='home'),
+    path('workarea/signup/', views.signup, name='signin'),
+    path('workarea/login/', views.signin, name='login'),
+    path('workarea/logout', views.signout, name='logout'),
+    path('workarea/', views.workarea, name='workarea'),
 ]
