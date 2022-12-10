@@ -14,6 +14,9 @@ class Task(models.Model):
     deleted_at = models.DateTimeField(null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.title + ', por ' + self.user.username
+
 
 """ class Contact(models.Model):
     name = models.CharField(max_length=200)

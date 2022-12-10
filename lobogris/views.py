@@ -3,16 +3,23 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
+from .forms import TaskCreate
 
 # Create your views here.
+
+# home
 
 
 def home(request):
     return render(request, "index.html")
 
+# workarea
+
 
 def workarea(request):
     return render(request, 'workarea/index.html')
+
+# register
 
 
 def signup(request):
@@ -40,6 +47,8 @@ def signup(request):
             'error': 'Las contraseñas no coinciden'
         })
 
+# login
+
 
 def signin(request):
     if request.method == 'GET':
@@ -61,7 +70,46 @@ def signin(request):
             login(request, user)
             return redirect('workarea')
 
+# logout
+
 
 def signout(request):
     logout(request)
     return redirect('login')
+
+
+# workarea functions
+# tasks
+def tasks(request):
+    return render(request, 'workarea/tasks/index.html')
+
+
+def tasks_create(request):
+    return render(request, 'workarea/tasks/create.html', {
+        'form': TaskCreate
+    })
+
+
+# projects
+def projects(request):
+    return render(request, 'workarea/projects/index.html')
+
+
+# finances/incomings
+def finances_incomings(request):
+    return render(request, 'workarea/finances/index.html')
+
+
+# finances/outgoings
+def finances_outgoings(request):
+    return render(request, 'workarea/finances/index.html')
+
+
+# contacts
+def contacts(request):
+    return render(request, 'workarea/contacts/index.html')
+
+
+# datum
+def datum(request):
+    return render(request, 'workarea/datum/index.html')
