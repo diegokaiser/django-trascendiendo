@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
 from .forms import TaskCreate
+from .models import Task
 
 # Create your views here.
 
@@ -81,13 +82,29 @@ def signout(request):
 # workarea functions
 # tasks
 def tasks(request):
-    return render(request, 'workarea/tasks/index.html')
+    tasks = Task.objects.all()
+    return render(request, 'workarea/tasks/index.html', {
+        'tasks': tasks
+    })
 
 
 def tasks_create(request):
-    return render(request, 'workarea/tasks/create.html', {
-        'form': TaskCreate
-    })
+    if request.method == 'GET':
+        return render(request, 'workarea/tasks/create.html', {
+            'form': TaskCreate
+        })
+    else:
+        try:
+            form = TaskCreate(request.POST)
+            new_task = form.save(commit=False)
+            new_task.user = request.user
+            new_task.save()
+            return redirect('workarea/tasks')
+        except ValueError:
+            return render(request, 'workarea/tasks/create.html', {
+                'form': TaskCreate,
+                'error': 'Por favor, provee datos válidos'
+            })
 
 
 # projects

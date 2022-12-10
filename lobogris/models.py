@@ -9,6 +9,7 @@ class Task(models.Model):
     description = models.TextField(blank=True)
     date_completed = models.DateTimeField(null=True)
     priority = models.BooleanField(default=False)
+    status = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(null=True)
     deleted_at = models.DateTimeField(null=True)
@@ -18,19 +19,22 @@ class Task(models.Model):
         return self.title + ', por ' + self.user.username
 
 
-""" class Contact(models.Model):
+class Contact(models.Model):
     name = models.CharField(max_length=200)
     lastname = models.CharField(max_length=200)
     email = models.CharField(max_length=200)
     phone = models.CharField(max_length=200)
     company = models.CharField(max_length=200)
+    status = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(null=True)
     deleted_at = models.DateTimeField(null=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title
 
 
-class Project(models.Model):
+""" class Project(models.Model):
     title = models.CharField(max_length=200)
     code = models.CharField(max_length=200)
     description = models.TextField(blank=True)
