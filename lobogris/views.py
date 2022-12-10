@@ -3,8 +3,8 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
-from .forms import TaskCreate
-from .models import Task
+from .forms import TaskCreate, ContactCreate
+from .models import Task, Contact
 
 # Create your views here.
 
@@ -114,17 +114,38 @@ def projects(request):
 
 # finances/incomings
 def finances_incomings(request):
-    return render(request, 'workarea/finances/index.html')
+    return render(request, 'workarea/finances/incomings/index.html')
 
 
 # finances/outgoings
 def finances_outgoings(request):
-    return render(request, 'workarea/finances/index.html')
+    return render(request, 'workarea/finances/outgoings/index.html')
 
 
 # contacts
 def contacts(request):
-    return render(request, 'workarea/contacts/index.html')
+    contacts = Contact.objects.all()
+    return render(request, 'workarea/contacts/index.html', {
+        'contacts': contacts
+    })
+
+
+def contacts_create(request):
+    if request.method == 'GET':
+        return render(request, 'workarea/contacts/create.html', {
+            'form': ContactCreate
+        })
+    else:
+        try:
+            form = ContactCreate(request.POST)
+            new_contact = form.save(commit=False)
+            new_contact.save()
+            return redirect('workarea/contacts')
+        except ValueError:
+            return render(request, 'workarea/contacts/create.html', {
+                'form': ContactCreate,
+                'error': 'Por favor, provee datos válidos'
+            })
 
 
 # datum

@@ -1,5 +1,30 @@
 {% extends './../base.html' %}
 {% block content %}
 {% load static %}
-Tasks!
+<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Pendientes/</span> </h4>
+<!-- Basic Bootstrap Table -->
+<div class="card">
+  <div class="table-responsive text-nowrap">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Título</th>
+          <th>Users</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+      <tfoot class="table-border-bottom-0">
+        <tr>
+          <th>Título</th>
+          <th>Users</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>
 {% endblock %}
