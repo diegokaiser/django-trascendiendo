@@ -31,7 +31,7 @@ class Contact(models.Model):
     deleted_at = models.DateTimeField(null=True)
 
     def __str__(self):
-        return self.title
+        return self.name + ' ' + self.lastname
 
 
 """ class Project(models.Model):

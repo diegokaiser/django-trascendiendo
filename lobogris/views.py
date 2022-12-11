@@ -12,7 +12,21 @@ from .models import Task, Contact
 
 
 def home(request):
-    return render(request, "index.html")
+    if request.method == 'GET':
+        return render(request, 'index.html', {
+            'form': ContactCreate
+        })
+    else:
+        try:
+            form = ContactCreate(request.POST)
+            new_contact = form.save(commit=False)
+            new_contact.save()
+            return redirect('home')
+        except ValueError:
+            return render(request, 'index.html', {
+                'form': ContactCreate,
+                'error': 'Por favor, provee datos válidos'
+            })
 
 # workarea
 

@@ -1,1 +1,59 @@
-Home!
+<!DOCTYPE html>
+<html lang="es-ES">
+{% load static %}
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'assets/home/css/style.css' %}" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'assets/home/images/favicon.png' %}">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <title>Trascendiendo, Agencia Digital</title>
+</head>
+
+<body>
+  <main class="tras">
+    <div class="logo">
+      <img src="{% static 'assets/home/images/logo.svg' %}" alt="">
+    </div>
+    <div class="content">
+      <div class="content_text">
+        <h2>Elementum suscipit malesuada</h2>
+        <p>Mauris id tortor a massa finibus lobortis vitae ac libero. Cras eget ex vel leo tincidunt fermentum. Vivamus
+          magna augue, vestibulum id felis non, rutrum ornare dui. </p>
+        <p>Cras vestibulum, arcu dapibus varius sagittis, dolor erat auctor nulla, quis elementum massa mi fermentum
+          velit. </p>
+        <button class="js-activeContactModal">Contáctanos</button>
+      </div>
+    </div>
+  </main>
+
+  <div class="modal">
+    <div class="modal_content">
+      <span class="material-symbols-sharp">cancel</span>
+      <div class="modal_content_form">
+        <form method="post" class="modal_form">
+          <h3>Qué tal!</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam earum, omnis veniam.</p>
+          {% csrf_token %}
+          {{form.as_div}}
+          <button class="js-sendForm">
+            Enviar
+          </button>
+          <span class="error" aria-live="polite"></span>
+          {{error}}
+        </form>
+      </div>
+      <div class="modal_content_message">
+        <h3>Encantado de conocerte!</h3>
+        <p>Pronto nos pondremos en contacto ;)</p>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="{% static 'assets/home/js/libs/classie.js' %}"></script>
+  <script type="text/javascript" src="{% static 'assets/home/js/app.js' %}"></script>
+</body>
+
+</html>
