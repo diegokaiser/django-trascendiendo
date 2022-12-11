@@ -34,7 +34,29 @@ class Contact(models.Model):
         return self.name + ' ' + self.lastname
 
 
-""" class Project(models.Model):
+""" class Incoming(models.Model):
+    amount = models.FloatField()
+    description = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.amount + ', por ' + self.user.username
+
+
+class Outgoing(models.Model):
+    amount = models.FloatField()
+    description = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.amount + ', por ' + self.user.username
+
+
+class Project(models.Model):
     title = models.CharField(max_length=200)
     code = models.CharField(max_length=200)
     description = models.TextField(blank=True)
@@ -45,20 +67,6 @@ class Contact(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(null=True)
     deleted_at = models.DateTimeField(null=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-
-
-class Incoming(models.Model):
-    amount = models.FloatField()
-    description = models.TextField(blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-
-
-class Outgoing(models.Model):
-    amount = models.FloatField()
-    description = models.TextField(blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
