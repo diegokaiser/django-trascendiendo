@@ -24,14 +24,29 @@ urlpatterns = [
     path('workarea/signup/', views.signup, name='signin'),
     path('workarea/login/', views.signin, name='login'),
     path('workarea/logout/', views.signout, name='logout'),
+
     path('workarea/tasks/', views.tasks, name='workarea/tasks'),
     path('workarea/tasks/create/', views.tasks_create,
          name='workarea/tasks/create'),
+
     path('workarea/projects/', views.projects, name='workarea/projects'),
+    path('workarea/projects/create/', views.projects_create,
+         name='workarea/projects/create'),
+
     path('workarea/finances/incomings/', views.finances_incomings,
          name='workarea/finances/incomings'),
+    path('workarea/finances/incomings/create/', views.finances_incomings_create,
+         name='workarea/finances/incomings/create'),
     path('workarea/finances/outgoings/', views.finances_outgoings,
          name='workarea/finances/outgoings'),
+    path('workarea/finances/outgoings/create/', views.finances_outgoings_create,
+         name='workarea/finances/outgoings/create'),
+
     path('workarea/contacts/', views.contacts, name='workarea/contacts'),
+    path('workarea/contacts/create/', views.contacts,
+         name='workarea/contacts/create'),
+
     path('workarea/datum/', views.datum, name='workarea/datum'),
+    path('workarea/datum/create/', views.datum_create,
+         name='workarea/datum/create'),
 ]

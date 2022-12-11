@@ -3,8 +3,8 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
-from .forms import TaskCreate, ContactCreate
-from .models import Task, Contact
+from .forms import TaskCreate, ContactCreate, IncomingCreate, OutgoingCreate
+from .models import Task, Contact, Incoming, Outgoing
 
 # Create your views here.
 
@@ -126,14 +126,56 @@ def projects(request):
     return render(request, 'workarea/projects/index.html')
 
 
+def projects_create(request):
+    return render(request, 'workarea/projects/create.html')
+
+
 # finances/incomings
 def finances_incomings(request):
     return render(request, 'workarea/finances/incomings/index.html')
 
 
+def finances_incomings_create(request):
+    if request.method == 'GET':
+        return render(request, 'workarea/finances/incomings/create.html', {
+            'form': IncomingCreate
+        })
+    else:
+        try:
+            form = IncomingCreate(request.POST)
+            new_incoming = form.save(commit=False)
+            new_incoming.user = request.user
+            new_incoming.save()
+            return redirect('workarea/finances/incomings')
+        except ValueError:
+            return render(request, 'workarea/finances/incomings/create.html', {
+                'form': IncomingCreate,
+                'error': 'Por favor, provee datos válidos'
+            })
+
+
 # finances/outgoings
 def finances_outgoings(request):
     return render(request, 'workarea/finances/outgoings/index.html')
+
+
+def finances_outgoings_create(request):
+    if request.method == 'GET':
+        return render(request, 'workarea/finances/outgoings/create.html', {
+            'form': OutgoingCreate
+        })
+    else:
+        try:
+            form = OutgoingCreate(request.POST)
+            new_outgoing = form.save(commit=False)
+            new_outgoing.user = request.user
+            new_outgoing.save()
+            return redirect('workarea/finances/outgoings')
+        except ValueError:
+            return render(request, 'workarea/finances/outgoings/create.html', {
+                'form': OutgoingCreate,
+                'error': 'Por favor, provee datos válidos'
+            })
 
 
 # contacts
@@ -165,3 +207,7 @@ def contacts_create(request):
 # datum
 def datum(request):
     return render(request, 'workarea/datum/index.html')
+
+
+def datum_create(request):
+    return render(request, 'workarea/datum/create.html')
