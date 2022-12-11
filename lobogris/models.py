@@ -42,7 +42,7 @@ class Incoming(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.amount + ', por ' + self.user.username
+        return str(self.amount) + ', por ' + self.user.username
 
 
 class Outgoing(models.Model):
@@ -51,6 +51,9 @@ class Outgoing(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.amount) + ', por ' + self.user.username
 
 
 """ class Project(models.Model):

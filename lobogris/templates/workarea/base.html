@@ -86,19 +86,24 @@
           </li>
 
           <li
-            class="menu-item {% if url_name == 'workarea/finances/incomings' or url_name == 'workarea/finances/outgoings' %} open {% endif %}">
+            class="menu-item 
+            {% if url_name == 'workarea/finances/incomings' or url_name == 'workarea/finances/incomings/create' or url_name == 'workarea/finances/outgoings' or url_name == 'workarea/finances/outgoings/create' %} open {% endif %}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
               <i class="menu-icon tf-icons bx bx-dollar"></i>
               <div data-i18n="Layouts">Finanzas</div>
             </a>
 
             <ul class="menu-sub">
-              <li class="menu-item {% if url_name == 'workarea/finances/incomings' %} active {% endif %}">
+              <li
+                class="menu-item 
+                {% if url_name == 'workarea/finances/incomings' or url_name == 'workarea/finances/incomings/create' %} active {% endif %}">
                 <a href="{% url 'workarea/finances/incomings' %}" class="menu-link">
                   <div data-i18n="Without menu">Entradas</div>
                 </a>
               </li>
-              <li class="menu-item {% if url_name == 'workarea/finances/outgoings' %} active {% endif %}">
+              <li
+                class="menu-item 
+                {% if url_name == 'workarea/finances/outgoings' or url_name == 'workarea/finances/outgoings/create' %} active {% endif %}">
                 <a href="{% url 'workarea/finances/outgoings' %}" class="menu-link">
                   <div data-i18n="Without navbar">Salidas</div>
                 </a>

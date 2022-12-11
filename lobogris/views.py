@@ -132,7 +132,10 @@ def projects_create(request):
 
 # finances/incomings
 def finances_incomings(request):
-    return render(request, 'workarea/finances/incomings/index.html')
+    incomings = Incoming.objects.all()
+    return render(request, 'workarea/finances/incomings/index.html', {
+        'incomings': incomings
+    })
 
 
 def finances_incomings_create(request):
@@ -156,7 +159,10 @@ def finances_incomings_create(request):
 
 # finances/outgoings
 def finances_outgoings(request):
-    return render(request, 'workarea/finances/outgoings/index.html')
+    outgoings = Outgoing.objects.all()
+    return render(request, 'workarea/finances/outgoings/index.html', {
+        'outgoings': outgoings
+    })
 
 
 def finances_outgoings_create(request):

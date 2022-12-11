@@ -29,9 +29,17 @@ class IncomingCreate(ModelForm):
     class Meta:
         model = Incoming
         fields = {'amount', 'description'}
+        labels = {
+            'amount': 'Monto',
+            'description': 'Descripción'
+        }
 
 
 class OutgoingCreate(ModelForm):
     class Meta:
         model = Outgoing
         fields = {'amount', 'description'}
+        labels = {
+            'amount': 'Monto',
+            'description': 'Descripción'
+        }

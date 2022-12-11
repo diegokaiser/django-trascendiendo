@@ -15,10 +15,11 @@
         </tr>
       </thead>
       <tbody>
+        {% for outgoing in outgoings %}
         <tr>
-          <td>Cantidad</td>
-          <td>Sustento</td>
-          <td>Fecha</td>
+          <td>{{ outgoing.amount }}</td>
+          <td>{{ outgoing.description }}</td>
+          <td>{{ outgoing.created_at }}</td>
           <td>
             <div class="dropdown">
               <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
@@ -32,6 +33,7 @@
             </div>
           </td>
         </tr>
+        {% endfor %}
       </tbody>
       <tfoot class="table-border-bottom-0">
         <tr>

@@ -10,11 +10,11 @@
   <div class="col-xl">
     <div class="card mb-4">
       <div class="card-header d-flex justify-content-between align-items-center">
-        <h5 class="mb-0">Basic Layout</h5>
+        <h5 class="mb-0">Registrar ingreso</h5>
         <small class="text-muted float-end">Default label</small>
       </div>
       <div class="card-body">
-        <form action="/workarea/tasks/create/" method="post">
+        <form action="/workarea/finances/incomings/create/" method="post">
           {% csrf_token %}
           {{form.as_div}}
           <button class="btn btn-primary d-grid w-100">
