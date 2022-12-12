@@ -56,21 +56,24 @@ class Outgoing(models.Model):
         return str(self.amount) + ', por ' + self.user.username
 
 
-""" class Project(models.Model):
+class Project(models.Model):
     title = models.CharField(max_length=200)
     code = models.CharField(max_length=200)
     description = models.TextField(blank=True)
     due_at = models.DateTimeField(null=True)
     type_of_incoming = models.CharField(max_length=100)
     budget = models.FloatField()
-    contact = models.ForeignKey(Contact)
+    contact = models.ForeignKey(Contact, on_delete=models.DO_NOTHING)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(null=True)
     deleted_at = models.DateTimeField(null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.title + ' - ' + self.user.username
 
-class Text(models.Model):
+
+""" class Text(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField(blank=True)
     ruc = models.IntegerField()

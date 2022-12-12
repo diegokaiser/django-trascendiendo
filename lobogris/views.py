@@ -3,8 +3,8 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
-from .forms import TaskCreate, ContactCreate, IncomingCreate, OutgoingCreate
-from .models import Task, Contact, Incoming, Outgoing
+from .forms import TaskCreate, ContactCreate, IncomingCreate, OutgoingCreate, ProjectCreate
+from .models import Task, Contact, Incoming, Outgoing, Project
 
 # Create your views here.
 
@@ -34,9 +34,8 @@ def home(request):
 def workarea(request):
     return render(request, 'workarea/index.html')
 
+
 # register
-
-
 def signup(request):
     if request.method == 'GET':
         return render(request, 'workarea/signup.html', {
@@ -62,9 +61,8 @@ def signup(request):
             'error': 'Las contraseñas no coinciden'
         })
 
+
 # login
-
-
 def signin(request):
     if request.method == 'GET':
         return render(request, 'workarea/login.html', {
@@ -85,9 +83,8 @@ def signin(request):
             login(request, user)
             return redirect('workarea')
 
+
 # logout
-
-
 def signout(request):
     logout(request)
     return redirect('login')
@@ -123,11 +120,29 @@ def tasks_create(request):
 
 # projects
 def projects(request):
-    return render(request, 'workarea/projects/index.html')
+    projects = Project.objects.all()
+    return render(request, 'workarea/projects/index.html', {
+        'projects': projects
+    })
 
 
 def projects_create(request):
-    return render(request, 'workarea/projects/create.html')
+    if request.method == 'GET':
+        return render(request, 'workarea/projects/create.html', {
+            'form': ProjectCreate
+        })
+    else:
+        try:
+            form = ProjectCreate(request.POST)
+            new_project = form.save(commit=False)
+            new_project.user = request.user
+            new_project.save()
+            return redirect('workarea/projects')
+        except ValueError:
+            return render(request, 'workarea/projects/create.html', {
+                'form': ProjectCreate,
+                'error': 'Por favor, provee datos válidos'
+            })
 
 
 # finances/incomings

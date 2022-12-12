@@ -1,7 +1,12 @@
 {% extends './../base.html' %}
 {% block content %}
 {% load static %}
-<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Proyectos/</span> </h4>
+<h4 class="fw-bold py-3 mb-4 d-flex justify-content-between">
+  <span class="text-muted fw-light">Proyectos/</span>
+  <a class="btn btn-primary text-white" href="/workarea/projects/create/">
+    <span class="tf-icons bx bx-plus"></span>&nbsp; Crear nuevo
+  </a>
+</h4>
 <!-- Basic Bootstrap Table -->
 <div class="card">
   <div class="table-responsive text-nowrap">
@@ -13,18 +18,21 @@
           <th>Tipo de ingreso</th>
           <th>Presupuesto</th>
           <th>Cliente</th>
+          <th>Responasbles</th>
           <th>Fecha de entrega</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
+        {% for project in projects %}
         <tr>
-          <td>Nombre</td>
-          <td>Código</td>
-          <td>Tipo de ingreso</td>
-          <td>Presupuesto</td>
-          <td>Cliente</td>
-          <td>Fecha de entrega</td>
+          <td>{{ project.title }}</td>
+          <td>{{ project.code }}</td>
+          <td>{{ project.type_of_incoming }}</td>
+          <td>{{ project.budget }}</td>
+          <td>{{ project.contact }}</td>
+          <td>{{ project.user }}</td>
+          <td>{{ project.due_at}}</td>
           <td>
             <div class="dropdown">
               <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
@@ -41,6 +49,7 @@
             </div>
           </td>
         </tr>
+        {% endfor %}
       </tbody>
       <tfoot class="table-border-bottom-0">
         <tr>
@@ -49,6 +58,7 @@
           <th>Tipo de ingreso</th>
           <th>Presupuesto</th>
           <th>Cliente</th>
+          <th>Responasbles</th>
           <th>Fecha de entrega</th>
           <th>Actions</th>
         </tr>

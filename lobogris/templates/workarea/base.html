@@ -41,6 +41,7 @@
   <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
   <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
   <script src="{% static 'assets/js/config.js' %}"></script>
+  <script src="{% static 'assets/js/app.js' %}"></script>
 </head>
 
 <body>
@@ -69,13 +70,15 @@
           <li class="menu-header small text-uppercase">
             <span class="menu-header-text">Tareas</span>
           </li>
-          <li class="menu-item {% if url_name == 'workarea/tasks' %} active {% endif %}">
+          <li
+            class="menu-item {% if url_name == 'workarea/tasks' or url_name == 'workarea/tasks/create' %} active {% endif %}">
             <a href="{% url 'workarea/tasks' %}" class="menu-link ">
               <i class="menu-icon tf-icons bx bx-clipboard"></i>
               <div data-i18n="Analytics">Pendientes</div>
             </a>
           </li>
-          <li class="menu-item {% if url_name == 'workarea/projects' %} active {% endif %}">
+          <li
+            class="menu-item {% if url_name == 'workarea/projects' or url_name == 'workarea/projects/create' %} active {% endif %}">
             <a href="{% url 'workarea/projects' %}" class="menu-link">
               <i class="menu-icon tf-icons bx bx-code-alt"></i>
               <div data-i18n="Analytics">Proyectos</div>
@@ -87,7 +90,7 @@
 
           <li
             class="menu-item 
-            {% if url_name == 'workarea/finances/incomings' or url_name == 'workarea/finances/incomings/create' or url_name == 'workarea/finances/outgoings' or url_name == 'workarea/finances/outgoings/create' %} open {% endif %}">
+            {% if url_name == 'workarea/finances/incomings' or url_name == 'workarea/finances/incomings/create' or url_name == 'workarea/finances/outgoings' or url_name == 'workarea/finances/outgoings/create' %} open active {% endif %}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
               <i class="menu-icon tf-icons bx bx-dollar"></i>
               <div data-i18n="Layouts">Finanzas</div>
@@ -110,13 +113,15 @@
               </li>
             </ul>
           </li>
-          <li class="menu-item {% if url_name == 'workarea/contacts' %} active {% endif %}">
+          <li
+            class="menu-item {% if url_name == 'workarea/contacts' or url_name == 'workarea/contacts/create' %} active {% endif %}">
             <a href="{% url 'workarea/contacts' %}" class="menu-link">
               <i class="menu-icon tf-icons bx bxs-id-card"></i>
               <div data-i18n="Analytics">Contactos</div>
             </a>
           </li>
-          <li class="menu-item {% if url_name == 'workarea/datum' %} active {% endif %}">
+          <li
+            class="menu-item {% if url_name == 'workarea/datum' or url_name == 'workarea/datum/create' %} active {% endif %}">
             <a href="{% url 'workarea/datum' %}" class="menu-link">
               <i class="menu-icon tf-icons bx bxs-edit-alt"></i>
               <div data-i18n="Analytics">Datos</div>

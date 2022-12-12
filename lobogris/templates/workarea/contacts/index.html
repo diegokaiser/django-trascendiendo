@@ -1,7 +1,12 @@
 {% extends './../base.html' %}
 {% block content %}
 {% load static %}
-<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Contactos/</span> </h4>
+<h4 class="fw-bold py-3 mb-4 d-flex justify-content-between">
+  <span class="text-muted fw-light">Contactos/</span>
+  <a class="btn btn-primary text-white" href="/workarea/contacts/create/">
+    <span class="tf-icons bx bx-plus"></span>&nbsp; Crear nuevo
+  </a>
+</h4>
 <!-- Basic Bootstrap Table -->
 <div class="card">
   <div class="table-responsive text-nowrap">

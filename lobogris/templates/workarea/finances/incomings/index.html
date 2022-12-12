@@ -1,7 +1,12 @@
 {% extends './../../base.html' %}
 {% block content %}
 {% load static %}
-<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Ingresos/</span> </h4>
+<h4 class="fw-bold py-3 mb-4 d-flex justify-content-between">
+  <span class="text-muted fw-light">Ingresos/</span>
+  <a class="btn btn-primary text-white" href="/workarea/finances/incomings/create/">
+    <span class="tf-icons bx bx-plus"></span>&nbsp; Crear nuevo
+  </a>
+</h4>
 <!-- Basic Bootstrap Table -->
 <div class="card">
   <div class="table-responsive text-nowrap">
@@ -11,6 +16,7 @@
           <th>Cantidad</th>
           <th>Sustento</th>
           <th>Fecha</th>
+          <th>Registrado por</th>
           <th>Acciones</th>
         </tr>
       </thead>
@@ -20,6 +26,7 @@
           <td>{{ incoming.amount }}</td>
           <td>{{ incoming.description }}</td>
           <td>{{ incoming.created_at }}</td>
+          <td>{{ incoming.user }}</td>
           <td>
             <div class="dropdown">
               <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">

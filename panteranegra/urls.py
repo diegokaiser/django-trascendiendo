@@ -47,6 +47,4 @@ urlpatterns = [
          name='workarea/contacts/create'),
 
     path('workarea/datum/', views.datum, name='workarea/datum'),
-    path('workarea/datum/create/', views.datum_create,
-         name='workarea/datum/create'),
 ]
