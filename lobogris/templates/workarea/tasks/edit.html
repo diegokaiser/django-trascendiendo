@@ -1,0 +1,41 @@
+{% extends './../base.html' %}
+{% block content %}
+{% load static %}
+<h4 class="fw-bold py-3 mb-4">
+  <span class="text-muted fw-light"><a href="/workarea/tasks" class="text-muted fw-light">Pendientes</a>/</span>
+  {{ task.title }} /
+  {% if task.status %}
+  <span class="badge bg-label-warning me-1">Pending</span>
+  {% else %}
+  <span class="badge bg-label-success me-1">Completed</span>
+  {% endif %}
+</h4>
+<!-- Basic Layout -->
+<div class="row">
+  <div class="col-xl">
+    <div class="mb-2"></div>
+  </div>
+  <div class="col-xl">
+    <div class="card mb-4">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0">Editar tarea</h5>
+      </div>
+      <div class="card-body">
+        <form action="/workarea/tasks/create/" method="post">
+          {% csrf_token %}
+          {{form.as_div}}
+          <button class="btn btn-primary d-grid w-100">
+            Actualizar
+          </button>
+          <span class="msg">
+            {{error}}
+          </span>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl">
+    <div class="mb-2"></div>
+  </div>
+</div>
+{% endblock %}

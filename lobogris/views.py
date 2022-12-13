@@ -1,16 +1,16 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from .forms import TaskCreate, ContactCreate, IncomingCreate, OutgoingCreate, ProjectCreate
 from .models import Task, Contact, Incoming, Outgoing, Project
 
 # Create your views here.
 
+
 # home
-
-
 def home(request):
     if request.method == 'GET':
         return render(request, 'index.html', {
@@ -28,9 +28,9 @@ def home(request):
                 'error': 'Por favor, provee datos válidos'
             })
 
+
 # workarea
-
-
+@login_required
 def workarea(request):
     return render(request, 'workarea/index.html')
 
@@ -85,6 +85,7 @@ def signin(request):
 
 
 # logout
+@login_required
 def signout(request):
     logout(request)
     return redirect('login')
@@ -92,6 +93,7 @@ def signout(request):
 
 # workarea functions
 # tasks
+@login_required
 def tasks(request):
     tasks = Task.objects.all()
     return render(request, 'workarea/tasks/index.html', {
@@ -99,6 +101,7 @@ def tasks(request):
     })
 
 
+@login_required
 def tasks_create(request):
     if request.method == 'GET':
         return render(request, 'workarea/tasks/create.html', {
@@ -118,7 +121,41 @@ def tasks_create(request):
             })
 
 
+@login_required
+def tasks_detail(request, task_id):
+    task = get_object_or_404(Task, pk=task_id)
+    return render(request, 'workarea/tasks/detail.html', {
+        'task': task
+    })
+
+
+@login_required
+def tasks_edit(request, task_id):
+    if request.method == 'GET':
+        task = get_object_or_404(Task, pk=task_id)
+        form = TaskCreate(instance=task)
+        return render(request, 'workarea/tasks/edit.html', {
+            'task': task,
+            'form': form
+        })
+    else:
+        try:
+            task = get_object_or_404(Task, pk=task_id)
+            form = TaskCreate(request.POST, instance=task)
+            form.save()
+            return render(request, 'workarea/tasks/detail.html', {
+                'task': task
+            })
+        except ValueError:
+            return render(request, 'workarea/tasks/edit.html', {
+                'task': task,
+                'form': form,
+                'error': 'Error al actualizar'
+            })
+
+
 # projects
+@login_required
 def projects(request):
     projects = Project.objects.all()
     return render(request, 'workarea/projects/index.html', {
@@ -126,6 +163,7 @@ def projects(request):
     })
 
 
+@login_required
 def projects_create(request):
     if request.method == 'GET':
         return render(request, 'workarea/projects/create.html', {
@@ -145,7 +183,24 @@ def projects_create(request):
             })
 
 
+@login_required
+def projects_detail(request, project_id):
+    project = get_object_or_404(Project, pk=project_id)
+    return render(request, 'workarea/projects/detail.html', {
+        'project': project
+    })
+
+
+@login_required
+def projects_edit(request, project_id):
+    project = get_object_or_404(Project, k=project_id)
+    return render(request, 'workarea/projects/edit.html', {
+        'project': project
+    })
+
+
 # finances/incomings
+@login_required
 def finances_incomings(request):
     incomings = Incoming.objects.all()
     return render(request, 'workarea/finances/incomings/index.html', {
@@ -153,6 +208,7 @@ def finances_incomings(request):
     })
 
 
+@login_required
 def finances_incomings_create(request):
     if request.method == 'GET':
         return render(request, 'workarea/finances/incomings/create.html', {
@@ -172,7 +228,24 @@ def finances_incomings_create(request):
             })
 
 
+@login_required
+def finances_incomings_detail(request, incoming_id):
+    incoming = get_object_or_404(Incoming, pk=incoming_id)
+    return render(request, 'workarea/finances/incomings/detail.html', {
+        'incoming': incoming
+    })
+
+
+@login_required
+def finances_incomings_edit(request, incoming_id):
+    incoming = get_object_or_404(Incoming, pk=incoming_id)
+    return render(request, 'workarea/finances/incomings/edit.html', {
+        'incoming': incoming
+    })
+
+
 # finances/outgoings
+@login_required
 def finances_outgoings(request):
     outgoings = Outgoing.objects.all()
     return render(request, 'workarea/finances/outgoings/index.html', {
@@ -180,6 +253,7 @@ def finances_outgoings(request):
     })
 
 
+@login_required
 def finances_outgoings_create(request):
     if request.method == 'GET':
         return render(request, 'workarea/finances/outgoings/create.html', {
@@ -199,7 +273,24 @@ def finances_outgoings_create(request):
             })
 
 
+@login_required
+def finances_outgoings_detail(request, outgoing_id):
+    outgoing = get_object_or_404(Outgoing, pk=outgoing_id)
+    return render(request, 'workarea/finances/outgoings/detail.html', {
+        'outgoing': outgoing
+    })
+
+
+@login_required
+def finances_outgoings_edit(request, outgoing_id):
+    outgoing = get_object_or_404(Outgoing, pk=outgoing_id)
+    return render(request, 'workarea/finances/outgoings/edit.html', {
+        'outgoing': outgoing
+    })
+
+
 # contacts
+@login_required
 def contacts(request):
     contacts = Contact.objects.all()
     return render(request, 'workarea/contacts/index.html', {
@@ -207,6 +298,7 @@ def contacts(request):
     })
 
 
+@login_required
 def contacts_create(request):
     if request.method == 'GET':
         return render(request, 'workarea/contacts/create.html', {
@@ -225,10 +317,41 @@ def contacts_create(request):
             })
 
 
+@login_required
+def contacts_detail(request, contact_id):
+    contact = get_object_or_404(Contact, pk=contact_id)
+    return render(request, 'workarea/contacts/detail.html', {
+        'contact': contact
+    })
+
+
+@login_required
+def contacts_edit(request, contact_id):
+    contact = get_object_or_404(Contact, pk=contact_id)
+    return render(request, 'workarea/contacts/edit.html', {
+        'contact': contact
+    })
+
+
 # datum
+@login_required
 def datum(request):
     return render(request, 'workarea/datum/index.html')
 
 
+@login_required
 def datum_create(request):
-    return render(request, 'workarea/datum/create.html')
+    if request.method == 'GET':
+        return render(request, 'workarea/datum/create.html')
+    else:
+        return render(request, 'workarea/datum/create.html')
+
+
+@login_required
+def datum_edit(request, datum_id):
+    return render(request, 'workarea/datum/edit.html')
+
+
+@login_required
+def datum_detail(request, datum_id):
+    return render(request, 'workarea/datum/detail.html')

@@ -1,0 +1,76 @@
+{% extends './../base.html' %}
+{% block content %}
+{% load static %}
+<h4 class="fw-bold py-3 mb-4">
+  <span class="text-muted fw-light"><a href="/workarea/tasks" class="text-muted fw-light">Pendientes</a>/</span>
+  {{ task.title }} /
+  {% if task.status %}
+  <span class="badge bg-label-warning me-1">Pending</span>
+  {% else %}
+  <span class="badge bg-label-success me-1">Completed</span>
+  {% endif %}
+</h4>
+<div class="row">
+  <div class="col-xl">
+    <div class="card mb-4">
+      <div class="card-body">
+        <form>
+          <div class="mb-3">
+            <label class="form-label" for="title">Título:</label>
+            <input type="text" class="form-control" id="title" value="{{task.title}}" readonly />
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label" for="description">Descripción</label>
+            {% if task.description == '' %}
+            <textarea id="basic-default-message" class="form-control" readonly>- Sin descripción -</textarea>
+            {% else %}
+            <textarea id="basic-default-message" class="form-control" readonly>{{task.description}}</textarea>
+            {% endif %}
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label" for="priority">Prioridad:</label>
+            {% if task.priority %}
+            <input class="form-check-input" type="checkbox" value="" id="priority" checked disabled />
+            {% else %}
+            <input class="form-check-input" type="checkbox" value="" id="priority" disabled />
+            {% endif %}
+          </div>
+
+          {% if task.status %}
+          <div class="mb-3">
+            <label class="form-label" for="date_completed">Fecha de finalización:</label>
+            <input type="text" class="form-control" id="date_completed" value="{{task.date_completed}}" readonly />
+          </div>
+          {% else %}
+          <div class="mb-3">
+            <label class="form-label" for="date_completed">Fecha de finalización:</label>
+            <input type="text" class="form-control" id="date_completed" value="{{task.date_completed}}" readonly />
+          </div>
+          {% endif %}
+
+          <div class="mb-3">
+            <label class="form-label" for="created_at">Fecha de creación:</label>
+            <input type="text" class="form-control" id="created_at" value="{{task.created_at}}" readonly />
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label" for="updated_at">Fecha de actualización:</label>
+            <input type="text" class="form-control" id="updated_at" value="{{task.updated_at}}" readonly />
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label" for="user">Creado por:</label>
+            <input type="text" class="form-control" id="user" value="{{task.user}}" readonly />
+          </div>
+          {% if task.status %}
+          <a href="{% url 'workarea/tasks/edit' task.id %}" class="btn btn-primary">Editar</a>
+          {% endif %}
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl"></div>
+</div>
+{% endblock %}
