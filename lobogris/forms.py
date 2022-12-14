@@ -14,7 +14,7 @@ class TaskCreate(ModelForm):
         }
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
-            'description': forms.TextInput(attrs={'class': 'form-control'}),
+            'description': forms.Textarea(attrs={'class': 'form-control', 'type': 'date'}),
             'priority': forms.TextInput(attrs={'class': 'form-control'}),
         }
 
@@ -38,36 +38,36 @@ class ContactCreate(ModelForm):
 class IncomingCreate(ModelForm):
     class Meta:
         model = Incoming
-        fields = {'amount', 'description'}
+        fields = ['amount', 'description']
         labels = {
             'amount': 'Monto',
             'description': 'Descripción'
         }
         widgets = {
             'amount': forms.TextInput(attrs={'class': 'form-control'}),
-            'description': forms.TextInput(attrs={'class': 'form-control'}),
+            'description': forms.Textarea(attrs={'class': 'form-control', 'type': 'date'}),
         }
 
 
 class OutgoingCreate(ModelForm):
     class Meta:
         model = Outgoing
-        fields = {'amount', 'description'}
+        fields = ['amount', 'description']
         labels = {
             'amount': 'Monto',
             'description': 'Descripción'
         }
         widgets = {
             'amount': forms.TextInput(attrs={'class': 'form-control'}),
-            'description': forms.TextInput(attrs={'class': 'form-control'}),
+            'description': forms.Textarea(attrs={'class': 'form-control', 'type': 'date'}),
         }
 
 
 class ProjectCreate(ModelForm):
     class Meta:
         model = Project
-        fields = {'title', 'code', 'description', 'due_at',
-                  'type_of_incoming', 'budget', }
+        fields = ['title', 'code', 'description', 'due_at',
+                  'type_of_incoming', 'budget', 'contact']
         labels = {
             'title': 'Nombre',
             'code': 'Código',
@@ -75,12 +75,14 @@ class ProjectCreate(ModelForm):
             'due_at': 'Fecha límite',
             'type_of_incoming': 'Tipo de ingreso',
             'budget': 'Presupuesto',
+            'contact': 'Cliente'
         }
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
             'code': forms.TextInput(attrs={'class': 'form-control'}),
-            'description': forms.TextInput(attrs={'class': 'form-control'}),
-            'due_at': forms.TextInput(attrs={'class': 'form-control'}),
+            'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 4}),
+            'due_at': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
             'type_of_incoming': forms.TextInput(attrs={'class': 'form-control'}),
             'budget': forms.TextInput(attrs={'class': 'form-control'}),
+            'contact': forms.Select(attrs={'class': 'form-control'})
         }

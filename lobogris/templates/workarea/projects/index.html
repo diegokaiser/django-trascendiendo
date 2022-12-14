@@ -27,7 +27,7 @@
         {% for project in projects %}
         <tr>
           <td>
-            <a href="{% url 'workarea/projects/detail' projects.id %}">
+            <a href="{% url 'workarea/projects/detail' project.id %}">
               {{ project.title }}
             </a>
           </td>
@@ -43,7 +43,7 @@
                 <i class="bx bx-dots-vertical-rounded"></i>
               </button>
               <div class="dropdown-menu">
-                <a class="dropdown-item" href="{% url 'workarea/projects/edit' projects.id %}">
+                <a class="dropdown-item" href="{% url 'workarea/projects/edit' project.id %}">
                   <i class="bx bx-edit-alt me-1"></i>Edit
                 </a>
                 <a class="dropdown-item" href="javascript:void(0);">

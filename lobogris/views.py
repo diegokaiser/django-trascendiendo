@@ -170,17 +170,16 @@ def projects_create(request):
             'form': ProjectCreate
         })
     else:
-        try:
-            form = ProjectCreate(request.POST)
+        form = ProjectCreate(request.POST)
+        if form.is_valid():
             new_project = form.save(commit=False)
             new_project.user = request.user
             new_project.save()
             return redirect('workarea/projects')
-        except ValueError:
-            return render(request, 'workarea/projects/create.html', {
-                'form': ProjectCreate,
-                'error': 'Por favor, provee datos válidos'
-            })
+        return render(request, 'workarea/projects/create.html', {
+            'form': ProjectCreate,
+            'error': 'Por favor, provee datos válidos'
+        })
 
 
 @login_required
